@@ -48,8 +48,13 @@ $config=include_once APP_NAME."config.php";
 
 include_once SMARTY_PATH."Smarty.class.php";
 include_once LIBS_PATH."route.class.php";
-include_once LIBS_PATH."main.class.php";
+//include_once LIBS_PATH."main.class.php";
 
+function auto($classname){
+    include_once MAIN_PATH.str_replace("\\",DIRECTORY_SEPARATOR,$classname).".class.php";
+
+}
+spl_autoload_register("auto");
 $router=new \libs\route();
 $router->run();
 //路由的概念
